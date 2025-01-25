@@ -222,7 +222,7 @@ class BookManagerApp:
 if __name__ == "__main__":
     root = Tk()
     app = BookManagerApp(root) # Create an instance of the BookManagerApp class
-    app.ctrl.initialize_control() # Initialize the database
+    asyncio.run(app.ctrl.initialize_control()) # Initialize the database
     asyncio.run(app.refresh_book_list()) # List all books
     
 

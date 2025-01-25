@@ -3,12 +3,15 @@ import os
 
 # define the database file path
 class BookManager:
+    def __init__(self):
+        self.database = None  # Create a database variable to store the path to the database file
+        
     async def initialize(self):
         self.database = 'Database/Books.db' # create a database variable to store the path to the database file
 
-        print(f"Database file path: {os.path.abspath(self.database)}") # Print the absolute path to the database file
+        print(f"Database file path: {os.path.abspath(self.database)}") # Print the absolute path to the database fi
+       
         async with aiosqlite.connect(self.database) as db:
-
             await db.execute('''
                 CREATE TABLE IF NOT EXISTS Books (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,8 +23,7 @@ class BookManager:
                     format TEXT CHECK(format IN ('Physical', 'E-Book', 'Audio')) NOT NULL
                 )
             ''')
-            await db.commit() 
-        print(f"Connected to database: {self.database}") # Print the connection object
+            await db.commit()  # Spara ändringarna# Print the connection object
 
       
 

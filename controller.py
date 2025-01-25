@@ -5,8 +5,8 @@ class Controller:
     def __init__(self):
         self.book_manager = db.BookManager()
 
-    def initialize_control(self):
-        self.book_manager.initialize()
+    async def initialize_control(self):
+        await self.book_manager.initialize()
 
     async def add_book(self, title, author, year, status, category, format):
         if not title or not author or not year or not status:
