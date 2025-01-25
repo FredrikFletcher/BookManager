@@ -1,13 +1,31 @@
-# Python-cachefiler
+# Ignorera Python-cachefiler
 __pycache__/
 *.py[cod]
 *.pyo
 
-# Virtuella miljöer
-venv/
+# Ignorera virtuella miljöer
+.venv/
 env/
 
-# IDE-specifika filer
+# Ignorera operativsystemspecifika filer
+.DS_Store
+Thumbs.db
+
+# Ignorera build/ och dist/ mappar (genererade av PyInstaller)
+build/
+dist/
+
+# Ignorera PyInstaller-specifik fil
+*.spec
+
+# Ignorera loggfiler
+*.log
+*.txt
+
+# Ignorera komprimerade filer
+*.zip
+
+# Ignorera IDE-specifika filer
 .idea/
 .vscode/
 *.suo
@@ -16,21 +34,5 @@ env/
 *.sln
 *.swp
 
-# Operativsystemspecifika filer
-.DS_Store  # macOS
-Thumbs.db  # Windows
-desktop.ini
-
-# Loggfiler och tillfälliga filer
-*.log
-*.tmp
-
-# Bytekompilerade filer
-*.class
-
-# Databaser
-*.db
-*.sqlite3
-
-# Miljöfiler (känsliga uppgifter)
-.env
+# Ignorera andra temporära filer
+None
