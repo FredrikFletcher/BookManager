@@ -67,19 +67,27 @@ class BookManager:
         async with aiosqlite.connect(self.database) as db:
             await db.close()
             print("Connection closed")
-        
+# statistics for the books
     async def calculate_books(self):
         async with aiosqlite.connect(self.database) as db:
             async with db.execute('SELECT COUNT(*) FROM Books') as cursor:
                 count = await cursor.fetchone()
         return count[0]
-    
+# Calculate the number of books to read
     async def calculate_read_books(self, status):
         async with aiosqlite.connect(self.database) as db:
             async with db.execute('SELECT COUNT(*) FROM Books WHERE status = ?', (status,)) as cursor:
                 count = await cursor.fetchone()
         return count[0]
     
+# Calculate categories of books
+    async def calculate_categories(self):
+        async with aiosqlite.connect(self.database) as db:
+            async with db.execute('SELECT category, COUNT(*) FROM Books GROUP BY category') as cursor:
+                categories = await cursor.fetchall()
+        return categories
+
+
 
 
 

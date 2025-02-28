@@ -132,6 +132,9 @@ class BookManagerApp:
         Button(button_frame, text="Update Book", command=lambda: self.run_asyncio_task(self.handle_update_book)).grid(
             row=0, column=2, padx=5, pady=5
         )
+        Button(button_frame, text="Statistics", command=lambda: self.run_asyncio_task(self.open_statistics_window)).grid(row=0, column=3, padx=5, pady=5
+        )
+        
 
     async def search_books(self, _):
         query = self.search_entry.get().lower()
@@ -156,6 +159,7 @@ class BookManagerApp:
         for book in books:
             self.tree.insert("", END, values=book)
 
+    
     async def handle_add_book(self):
         try:
             # Get the values from the input fields, strip the values and store them in a dictionary, values, with the key as the field name
@@ -217,6 +221,18 @@ class BookManagerApp:
         except Exception as e:
             self.clear_inputs()
             print(f"Error populating fields: {e}")
+
+
+    def open_statistics_window(self):
+        if hasattr(self, "stats_window") and self.stats_window.winfo_exists():
+            self.stats_window.deiconify()
+            self.root.withdraw()
+            return
+        self.stats_window = Toplevel(self.root)
+        self.stats_window.title("Statistics")
+        self.stats_window.geometry("500x400")
+        self.stats_window.protocol("WM_DELETE_WINDOW", self.close_statistics_window)
+        self.root.withdraw()
 
 
 if __name__ == "__main__":
